@@ -110,5 +110,5 @@ select * from table where substring(name,3,2) = '科技'
 - ReadView（解决事务查询选择版本的问题）
 	- ReadView是快照读SQL（不加锁的selectSQL）执行时MVCC提取数据的依据
 	- 不同隔离级别下，ReadView的生成规则是不一样，最终的访问结果也不一样
-		- 读已提交：每一次执行快照读（事务中的select语句）时生成ReadView
+		- 读已提交：每一次执行快照读（事务中的select语句）时都会生成一份ReadView
 		- 可重复读：仅在事务中第一次执行快照读时生成ReadView，后续复用
