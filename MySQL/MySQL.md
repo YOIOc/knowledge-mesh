@@ -41,11 +41,17 @@ where a.id = b.id;
 1. 违反最左前缀法则
 2. 范围查询右边的列，不能使用索引
 ```
-select * from table where name='小米' and status>'1' and address='北京'
+select * from table where name='小米科技' and status>'1' and address='北京'
 ```
 1. 字符串不加引号，造成索引失效（类型转换）
-2. 以%开头的Like模糊查询，索引失效
-3. 不要在索引列上进行运算操作，索引将失效
+```
+select * from table where name='小米科技' and status>'1' and address='北京'
+```
+1. 以%开头的Like模糊查询，索引失效
+2. 不要在索引列上进行运算操作，索引将失效
+```
+select * from table where substring(name,3,2) = '科技'
+```
 ##### 3.8SQL优化
 1. 建表时规范选择数据类型
 2. 创建索引
