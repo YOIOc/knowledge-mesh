@@ -88,6 +88,6 @@ select * from table where substring(name,3,2) = '科技'
 3. **写入redo log buffer**：数据库将本次修改以日志的形式记录到redo log buffer中
 4. **redo log持久化**：redo log buffer中的数据被刷入磁盘的redo log file文件中
 5. **数据页持久化**：后台线程在合适的时机异步将缓冲池中的数据页刷入磁盘对应的数据页中
-
+为什么先写
 ![700](assets/MySQL/file-20260824195058559.png)
 **undo log**
