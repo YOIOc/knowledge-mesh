@@ -74,6 +74,8 @@ select * from table where substring(name,3,2) = '科技'
 - 解决措施（事务隔离级别）
 	![](assets/MySQL/file-20260824194344628.png)
 ##### 4.3.redo log和undo log的区别
-redo log
-	重做日志，记录的是事务提交后数据页的物理修改，用来实现事务的持久性
-	该日志文件由两部分组成：重做日志缓冲（redo log buffer）、重做日志文件（redo log file），前者在内存中，后者在磁盘中，当事务提交后会把所有修改信息都存到重做日志文件中，用于在刷新zang'ye
+**redo log**
+- 重做日志，记录的是事务提交后数据页的物理修改，用来实现事务的持久性
+该日志文件由两部分组成：重做日志缓冲（redo log buffer）、重做日志文件（redo log file），前者在内存中，后者在磁盘中，当事务提交后会把所有修改信息都存到重做日志文件中，用于在刷新脏页到磁盘发生错误时，进行数据恢复使用
+	![](assets/MySQL/file-20260824195058559.png)
+**undo log**
