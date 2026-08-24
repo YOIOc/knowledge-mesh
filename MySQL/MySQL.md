@@ -87,6 +87,6 @@ select * from table where substring(name,3,2) = '科技'
 2. 写入缓冲池：数据库先将数据页读入内存，修改操作首先操作缓冲池中的数据（此时内存中数据是最新的，磁盘上的旧数据还未修改）
 3. 写入重做日志缓冲：数据库将本次修改以日志的形式记录到redo log buffer中
 4. redo log持久化：redo log buffer中的数据被刷入磁盘的redo log file文件中
-5. sh'h
+5. 数据页持久化：后台线程在合适的时机异步将缓冲池中的shu'ju'ye
 ![700](assets/MySQL/file-20260824195058559.png)
 **undo log**
