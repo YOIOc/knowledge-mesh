@@ -75,7 +75,7 @@ select * from table where substring(name,3,2) = '科技'
 	![](assets/MySQL/file-20260824194344628.png)
 ##### 4.3.redo log和undo log的区别
 **redo log** - 保证事务持久性
-- 记录数据页的物理变化，fu'wu'd
-- 该日志文件由两部分组成：重做日志缓冲（redo log buffer）、重做日志文件（redo log file），前者在内存中，后者在磁盘中，当事务提交后会把所有修改信息都存到重做日志文件中，用于在刷新脏页到磁盘发生错误时，进行数据恢复使用
+- 记录数据页的物理变化，服务宕机时用来同步数据
+- 数据写入流程：客户端发送写请求→数据
 ![700](assets/MySQL/file-20260824195058559.png)
 **undo log**
