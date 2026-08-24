@@ -38,17 +38,20 @@ where a.id = b.id;
 3. 尽量使用联合索引
 4. 控制索引数量
 ##### 3.7索引失效
-1. 违反最左前缀法则
-2. 范围查询右边的列，不能使用索引
+- 违反最左前缀法则
+- 范围查询右边的列，不能使用索引
 ```
 select * from table where name='小米科技' and status>'1' and address='北京'
 ```
-1. 字符串不加引号，造成索引失效（类型转换）
+- 字符串不加引号，造成索引失效（类型转换）
 ```
-select * from table where name='小米科技' and status>'1' and address='北京'
+select * from table where name='小米科技' and status=0
 ```
-1. 以%开头的Like模糊查询，索引失效
-2. 不要在索引列上进行运算操作，索引将失效
+- 以%开头的Like模糊查询，索引失效
+```
+select * from table where name='%科技'
+```
+- 不要在索引列上进行运算操作，索引将失效
 ```
 select * from table where substring(name,3,2) = '科技'
 ```
