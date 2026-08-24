@@ -75,10 +75,10 @@ select * from table where substring(name,3,2) = '科技'
 	![](assets/MySQL/file-20260824194344628.png)
 ##### 4.3.redo log和undo log的区别
 **redo log** - 保证事务持久性
-定义：记录数据页的物理变化，服务宕机时用来同步数据
+定义：记录数据页的物理变化，在服务宕机时用来同步数据
 组成：
-- 重做日志缓冲（redo log buffer）
-- 重做日志文件（redo log file）
+- 重做日志缓冲（redo log buffer）：内存中
+- 重做日志文件（redo log file）：磁盘上
 相关概念：
 - 缓冲池（buffer pool）：内存中的一个区域，里面缓存磁盘上经常操作的真实数据，在执行增删改查操作时，先操作缓冲池中的数据（若缓冲池没有数据，则从磁盘中加载并缓存），以一定频率刷新到磁盘，从而减少磁盘IO，加快处理速度
 - 数据页（page）：是InnoDB存储引擎磁盘管理的最小单元，每个页的大选哦默认16KB，用来存储行数据
