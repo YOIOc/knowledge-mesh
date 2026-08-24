@@ -95,6 +95,6 @@ select * from table where substring(name,3,2) = '科技'
 	Redo Log是“顺序写”：日志文件是追加写入
 	数据页是“随机写”：频繁修改散落在不同位置上的数据页，会涉及大量寻道时间，性能极差
 - 数据安全与崩溃恢复
-	
+	如果直接写入
 ![700](assets/MySQL/file-20260824195058559.png)
 **undo log**
