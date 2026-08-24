@@ -108,7 +108,7 @@ select * from table where substring(name,3,2) = '科技'
 	2. 版本链：不同事务或相同事务对同一条记录进行修改，会导致该记录的Undo Log生成一条版该记录的版本链表，链表头部是最新的旧记录，链表尾部是最早的旧记录
 	![](assets/MySQL/file-20260825011308170.png)
 - ReadView（解决事务查询选择版本的问题）
-	- 根据ReadView的匹配规则和当前的事务id判断该访问哪个版本的数据
+	- ReadView是快照读SQL（不加锁的selectSQL）执行时MVCC提取数据的依据
 	- 不同隔离级别下，ReadView的生成规则是不一样，最终的访问结果也不一样
 		- 读已提交：每一次执行快照读（事务中的select语句）时生成ReadView
 		- 可重复读：仅在事务中第一次执行快照读时生成ReadView，后续复用
