@@ -72,4 +72,6 @@ select * from table where substring(name,3,2) = '科技'
 	2. 不可重复读：在一个事务内，先后读取同一条数据，但两次读取到的数据不同
 	3. 幻读：一个事务先后读取同一张表的数据，但两次读取到的数据不同
 - 解决措施（事务隔离级别）
-
+	![](assets/MySQL/file-20260824194344628.png)
+## 5.undo log和redo log的区别
+- undo log
