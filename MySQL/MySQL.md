@@ -73,8 +73,8 @@ select * from table where substring(name,3,2) = '科技'
 	3. 幻读：一个事务先后读取同一张表的数据，但两次读取到的数据不同
 - 解决措施（事务隔离级别）
 	![](assets/MySQL/file-20260824194344628.png)
-##### 4.3.redo log和undo log的区别
-**redo log** - 保证事务持久性
+##### 4.3.Redo Log和Undo Log的区别
+**Redo Log** - 保证事务持久性
 定义：记录数据页的物理变化，在服务宕机时用来同步数据
 组成：
 - **重做日志缓冲**（redo log buffer）：内存中
@@ -88,6 +88,7 @@ select * from table where substring(name,3,2) = '科技'
 3. **写入redo log buffer**：数据库将本次修改以日志的形式记录到redo log buffer中
 4. **redo log持久化**：redo log buffer中的数据被刷入磁盘的redo log file文件中
 5. **数据页持久化**：后台线程在合适的时机异步将缓冲池中的数据页刷入磁盘对应的数据页中
-为什么先写
+为什么需要Redo Log Buffer？
+- 合并写入，减少磁盘IO：如果每次修改都直接写磁盘，那磁盘的随机I/O次数会非常多。Buffer的存在可以将多次小规模修改合并为一次较大规模的顺序写入。
 ![700](assets/MySQL/file-20260824195058559.png)
 **undo log**
