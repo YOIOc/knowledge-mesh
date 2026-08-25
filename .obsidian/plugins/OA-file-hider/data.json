@@ -2,6 +2,7 @@
   "hidden": true,
   "hiddenList": [
     "Spring Cloud/assets",
-    "Redis/assets"
+    "Redis/assets",
+    "MySQL/assets"
   ]
 }
