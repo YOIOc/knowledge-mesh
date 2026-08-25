@@ -113,3 +113,13 @@ MySQL的MVCC通过以下三个关键部分相结合实现
 	- 不同隔离级别下，ReadView的生成规则是不一样，最终的访问结果也不一样
 		- 读已提交：每一次执行快照读（事务中的select语句）时都会生成一份ReadView
 		- 可重复读：仅在事务中第一次执行快照读时生成ReadView，后续复用
+	1. ReadView包含的四个核心字段
+		1. m_ids：当前活跃的事务id集合
+		2. min_trx_id：最小活跃事务id
+		3. max_trx_id：预分配事务id（当前最大事务id+1）
+		4. creator_trx_id：ReadView创建者的事务id
+	2. 版本链数据访问规则（trx_id代表当前事务id）
+		1. trx_id == creator_trx_id：可以访问该版本（说明数据是当前这个事务更改的）
+		2. trx_id < min_trx_id：可以访问该版本（说明数据已经提交）
+		3. trx_id > max_trx_id：不可以访问该版本（说明事务是在ReadView生成后开启的）
+		4. min_trx_id <= trx_id <= max_trx_id and trx_id不在m_ids中（说明数据已经提交）
