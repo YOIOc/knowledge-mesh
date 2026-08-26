@@ -8,45 +8,10 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "path:Redis  ",
+      "query": "path:",
       "color": {
         "a": 1,
         "rgb": 14048348
-      }
-    },
-    {
-      "query": "path:Spring Cloud ",
-      "color": {
-        "a": 1,
-        "rgb": 14069084
-      }
-    },
-    {
-      "query": "path:计算机网络 ",
-      "color": {
-        "a": 1,
-        "rgb": 11392604
-      }
-    },
-    {
-      "query": "path:MySQL ",
-      "color": {
-        "a": 1,
-        "rgb": 6084188
-      }
-    },
-    {
-      "query": "path:数据结构 ",
-      "color": {
-        "a": 1,
-        "rgb": 6084269
-      }
-    },
-    {
-      "query": "path:Spring Boot ",
-      "color": {
-        "a": 1,
-        "rgb": 6073814
       }
     }
   ],
@@ -61,5 +26,5 @@
   "linkStrength": 1,
   "linkDistance": 250,
   "scale": 0.7132754626224408,
-  "close": true
+  "close": false
 }
