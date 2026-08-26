@@ -34,6 +34,13 @@
         "a": 1,
         "rgb": 6084188
       }
+    },
+    {
+      "query": "path:数据结构 ",
+      "color": {
+        "a": 1,
+        "rgb": 6084269
+      }
     }
   ],
   "collapse-display": false,
