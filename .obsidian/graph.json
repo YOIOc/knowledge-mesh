@@ -41,6 +41,13 @@
         "a": 1,
         "rgb": 6084269
       }
+    },
+    {
+      "query": "path:Spring Boot ",
+      "color": {
+        "a": 1,
+        "rgb": 6073814
+      }
     }
   ],
   "collapse-display": false,
