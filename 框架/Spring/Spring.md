@@ -13,5 +13,7 @@ Spring中的Bean一般都是注入无状态的对象，因此没有线程安全�
 - 方法中出现异常后没有抛出，而是自己处理了异常：手动抛出
 - 抛出了受检异常：`@Transactional` 配置rollback属性为Exception
 - 非public方法导致的事务失效：改为public
-## 4.[Spring中Bean的生命周期](注释.md#Spring中Bean的声明周期)
-![](assets/Spring/file-20260826172726620.png)
+## 4.Spring中Bean的生命周期
+![](assets/Spring/file-20260826172855640.png)
+## 5.Bean中的循环依赖问题
+定义：循环依赖其实j
