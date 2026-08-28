@@ -1,4 +1,10 @@
 ## 1.Bean的获取
+1. 获取IOC容器：
+```
+@Autowired
+private ApplicationContext applicationContext;
+```
+2. 通过IOC容器获取Bean 
 - 根据 名称 获取： `Object getBean(String name)`
 - 根据 类型 获取：`<T> T getBean(Class<T> requiredType)`
 - 根据 名称+类型 获取：`<T> T getBean(String name, Class<T> requiredType)`
