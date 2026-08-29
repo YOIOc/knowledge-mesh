@@ -1,10 +1,16 @@
 ## 1.Bean的获取
-1. 获取IOC容器：
+- 通过Spring框架进行依赖注入
 ```
 @Autowired
-private ApplicationContext applicationContext;
+private Bean bean;
 ```
-2. 通过IOC容器获取Bean 
+- 通过IOC容器，手动获取：
+1. 首先获取IOC容器
+```
+	@Autowired
+	private ApplicationContext applicationContext;
+```
+2.  通过IOC容器获取Bean 
 	- 根据 名称 获取： `Object getBean(String name)`
 	- 根据 类型 获取：`<T> T getBean(Class<T> requiredType)`
 	- 根据 名称+类型 获取：`<T> T getBean(String name, Class<T> requiredType)`
@@ -21,6 +27,20 @@ public class DeptController{
 Bean的作用域类型
 - singleton：容器内同名称的Bean只有一个实例（单例，在容器启动时被创建）（默认）
 - prototype：每次使用该Bean时会创建新的实例（非单利，在每一次获取该Bean的时候创建一个新的实例）
+## 3.创建第三方Bean
+若要管理第三方Bean，可以通过@Configuration注解声明一个配置类，然后使用@Bean注解构造三方Bean
+- 可以通过@Bean注解的name或value属性，声明Bean的名称，默认Bean的名称就是方法名
+- 如果第三方Bean需要依赖其他Bean对象，可直接在Bean的定义方法中设置形参即可，容器会根据类型自动装配
+```
+@Configuration
+public class CommonConfig{
+	@Bean(name = "reader")
+	public SAXReader saxReader(NeedBean needBean){
+		SAXReader saxReader = new SAXReader(needBean);
+		return saxReader;
+	}
+}
+```
 ## 2.单例Bean时线程安全的吗
 不是线程安全的
 Spring中的Bean一般都是注入无状态的对象，因此没有线程安全问题，如果Bean中定义了可修改的成员变量，是要考虑线程安全问题的，可以使用多例或者加锁解决
