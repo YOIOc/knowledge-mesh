@@ -16,7 +16,7 @@
 4. **AutoConfigurationPackage.class**
 	该类实现了SelectImport接口的`String[] selectImports()`方法
 5. **String\[] selectImports()**
-	该方法会将 该项目+所有外部Jar包 的`classpath:META-INF/spring/xxx.import`文件中配置的配置类，统一以一个字符串数组的形式返回
+	该方法会扫描所有外部Jar包的`classpath:META-INF/spring/xxx.imports`文件，将其中配置的自动配置类以字符串数组的形式返回
 6. 
 ## 1.Spring Boot中配置的优先级（由高到低）
 1. 命令行参数（--xxx=xxx）
