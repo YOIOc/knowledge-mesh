@@ -5,7 +5,8 @@
 - 原因二：**自动配置**—解决“大量xml配置”的问题
 	- 痛点：在传统Spring项目中，即使引入依赖，还需要配置大量的xml配置文件
 	- 优势：Spring Boot启动时，自动将一些配置类、Bean对象加入到IOC容器中，无需手动声明与配置（Spring Boot默认约定大于配置）
-## 2.Spring Boot自动配置原理
+## 2.Spring Boot中的配置类
+## 3.Spring Boot自动配置原理
 1. **@SpringBootApplication**：封装了三个子注解
 	- @SpringBootConfiguration：该注解用来声明当前类是一个配置类
 	- @EnableAutoConfiguration：SpringBoot实现自动配置的核心注解
@@ -18,7 +19,7 @@
 5. **String\[] selectImports()**
 	该方法会扫描所有外部Jar包的`classpath:META-INF/spring/xxx.imports`文件，将其中配置的自动配置类以字符串数组的形式返回
 6. 
-## 1.Spring Boot中配置的优先级（由高到低）
+## 4.Spring Boot中配置的优先级（由高到低）
 1. 命令行参数（--xxx=xxx）
 2. Java系统属性（-Dxxx=xxx）
 3. application.properties
