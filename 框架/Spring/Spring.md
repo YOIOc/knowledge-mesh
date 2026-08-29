@@ -9,6 +9,16 @@ private ApplicationContext applicationContext;
 	- 根据 类型 获取：`<T> T getBean(Class<T> requiredType)`
 	- 根据 名称+类型 获取：`<T> T getBean(String name, Class<T> requiredType)`
 ## 2.Bean的作用域
+如何配置Bean的作用域
+```
+@Scope("prototype")
+@RestController
+@RequestMapping("/depts")
+public class DeptController{
+}
+```
+
+Bean的作用域类型
 - singleton：容器内同名称的Bean只有一个实例（单例）（默认）
 - prototype：每次使用该Bean时会创建新的实例（非单利）
 ## 2.单例Bean时线程安全的吗
