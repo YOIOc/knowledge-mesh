@@ -18,7 +18,7 @@
 	该类实现了SelectImport接口的`String[] selectImports()`方法
 5. **String\[] selectImports()**
 	该方法会扫描所有外部Jar包的`classpath:META-INF/spring/xxx.imports`文件，将其中配置的自动配置类以字符串数组的形式返回
-6. 
+6. 外部Jar包的开发者，会将
 ## 4.Spring Boot中配置的优先级（由高到低）
 1. 命令行参数（--xxx=xxx）
 2. Java系统属性（-Dxxx=xxx）
