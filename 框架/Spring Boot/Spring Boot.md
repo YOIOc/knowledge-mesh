@@ -12,7 +12,7 @@
 	- @ComponentScan：组件扫描注解，默认扫描当前引导类所在包及其子包
 2. **@EnableAutoConfiguration**：封装了@Import注解
 3. **@Import(AutoConfigurationPackage.class)**
-	Spring Boot会将@Import注解导入的类，实例化为Bean加入到IOC容器中
+	`@Import`注解用于导入配置类，它会调用导入类中的`selectImports()`方法，拿到需要注册到IOC容器的配置类数组，从而实现三方Bean的批量注册
 4. **AutoConfigurationPackage.class**
 	该类实现了SelectImport接口的`String[] selectImports()`方法
 5. **String\[] selectImports()**
