@@ -9,6 +9,8 @@ private ApplicationContext applicationContext;
 	- 根据 类型 获取：`<T> T getBean(Class<T> requiredType)`
 	- 根据 名称+类型 获取：`<T> T getBean(String name, Class<T> requiredType)`
 ## 2.Bean的作用域
+- singleton：容器内同名称的Bean只有一个实例（单例）（默认）
+- prototype：每次使用该Bean时会创建新的实例（非单利）
 ## 2.单例Bean时线程安全的吗
 不是线程安全的
 Spring中的Bean一般都是注入无状态的对象，因此没有线程安全问题，如果Bean中定义了可修改的成员变量，是要考虑线程安全问题的，可以使用多例或者加锁解决
