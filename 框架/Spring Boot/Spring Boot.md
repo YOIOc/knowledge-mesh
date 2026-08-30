@@ -8,7 +8,8 @@
 ## 2.Spring Boot中的配置类
 ##### 什么是配置类
 就是加上@Configuration注解的Java类。其内部可以通过@Bean注解定义方法，将方法的返回值作为Bean交给IOC容器管理
-##### 
+##### 配置类的执行时机
+Spring Boot启动时，会解析所有配置类，将所有man可以实例化的Bean
 ## 3.Spring Boot自动配置原理
 - 外部Jar包（依赖）的开发者
 	在自己的Jar包中编写带有`@Configuration`注解的配置类，随后在该Jar包的`META-INF/spring/...imports`文件中，把上述配置类写进去
