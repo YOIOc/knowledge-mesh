@@ -5,4 +5,3 @@
 4. 调用Mapper对象中的SQL操作方法
 5. 流程结束，关闭SqlSession对象
 ## 2.MyBatis是否支持延迟加载
-MyBatis  
