@@ -7,26 +7,6 @@
  ^621019
 - 服务监控：服务提供者每隔5s向Nacos发送心跳，如果Nacos服务在固定时间窗口内没有接收到心跳，就会将该服务从Nacos中剔除（非临时示例不会被剔除） ^f7fd73
 ## 1.2实战：注册中心+远程过程调用
-**创建公共的API模块**
-	该模块下编写各种用于提供服务的Feign客户端，服务调用者通过导入该模块的依赖，即可使用各种Feign客户端
-1. 公共模块引入OpenFeign、负载均衡依赖(服务调用者导入该模块后，也就同样引入了这两个依赖)
-```
-<!--Openfeign-->
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-openfeign</artifactId>
-</dependency>
-
-<!--负载均衡-->
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-</dependency>
-```
-![](assets/Nacos/file-20260830172045332.png)
-2. 在公共api模块的client包下，编写需要用于提供外部服务的接口
-![](assets/Nacos/file-20260830172407314.png)
-
 **服务提供者模块**
 1. 引入Nacos依赖
 ```
@@ -50,6 +30,26 @@ spring:
         server-addr: localhost:8848
         file-extension: yaml
 ```
+
+**创建公共的API模块**
+	该模块下编写各种用于提供服务的Feign客户端，服务调用者通过导入该模块的依赖，即可使用各种Feign客户端
+1. 公共模块引入OpenFeign、负载均衡依赖(服务调用者导入该模块后，也就同样引入了这两个依赖)
+```
+<!--Openfeign-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+
+<!--负载均衡-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+</dependency>
+```
+![](assets/Nacos/file-20260830172045332.png)
+2. 在公共api模块的client包下，编写需要用于提供外部服务的接口
+![](assets/Nacos/file-20260830172407314.png)
 
 **服务调用者模块**
 	引入Nacos、公共api模块，使用远程服务
