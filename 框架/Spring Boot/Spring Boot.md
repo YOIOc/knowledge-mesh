@@ -12,10 +12,10 @@
 	- @EnableAutoConfiguration：SpringBoot实现自动配置的核心注解
 	- @ComponentScan：组件扫描注解，默认扫描当前引导类所在包及其子包
 2. **@EnableAutoConfiguration**：封装了@Import注解
-3. **@Import(AutoConfigurationPackage.class)**
+3. **@Import(AutoConfigurationImportSelector.class)**
 	`@Import`注解用于导入配置类，它会调用导入类中的`selectImports()`方法，拿到需要注册到IOC容器的配置类数组，从而实现三方Bean的批量注册
-4. **AutoConfigurationPackage.class**
-	该类实现了SelectImport接口的`String[] selectImports()`方法
+4. **AutoConfigurationImportSelector.class**
+	该类实现了`DeferredImportSelector`接口的`String[] selectImports()`方法
 5. **String\[] selectImports()**
 	该方法会扫描所有外部Jar包的`classpath:META-INF/spring/xxx.imports`文件，将其中配置的自动配置类以字符串数组的形式返回
 6. 外部Jar包的开发者，会将
