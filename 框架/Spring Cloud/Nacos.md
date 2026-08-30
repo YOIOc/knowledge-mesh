@@ -26,9 +26,6 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-      config:
-        server-addr: localhost:8848
-        file-extension: yaml
 ```
 
 **创建公共的API模块**
