@@ -37,10 +37,18 @@
 ```
 2. 配置Nacos地址
 ```
+server:
+  port: 8081
 spring:
+  application:
+    name: item-service
   cloud:
     nacos:
-      server-addr: 8.156.77.246:8848
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
 ```
 
 **服务调用者模块**
