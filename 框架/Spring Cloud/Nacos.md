@@ -70,10 +70,18 @@ spring:
 ```
 2. 配置Nacos地址
 ```
+server:
+  port: 8081
 spring:
+  application:
+    name: car-service
   cloud:
     nacos:
-      server-addr: 8.156.77.246:8848
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
 ```
 3. 调用者在启动类上使用`@EnableFeignClient`注解，启用OpenFeign功能，并指定调用的客户端的所属包名以便Spring可以扫描到客户端Bean
 ```
