@@ -18,7 +18,7 @@
 	该类实现了`DeferredImportSelector`接口的`String[] selectImports()`方法
 5. **String\[] selectImports()**
 	该方法会扫描所有外部Jar包的`classpath:META-INF/spring/xxx.imports`文件，将其中配置的自动配置类以字符串数组的形式返回
-6. 外部Jar包的开发者，会将
+6. 外部Jar包的开发者，会在自己的Jar包中编写带有`@Configuration`注解的配置类，随后在该Jar包的`META-INF/spring/...imports`文件中，把上述配置类写进去，这样，Spring Boot启动时就能自动扫描到它
 ## 4.Spring Boot中配置的优先级（由高到低）
 1. 命令行参数（--xxx=xxx）
 2. Java系统属性（-Dxxx=xxx）
