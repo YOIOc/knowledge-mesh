@@ -67,7 +67,7 @@ spring:
     nacos:
       server-addr: 8.156.77.246:8848
 ```
-3. 调用者模块启动项使用`@EnableFeignClient`注解，启用OpenFeign功能，并指定调用的客户端的所属包名以便Spring可以扫描到客户端Bean
+3. 调用者在启动类上使用`@EnableFeignClient`注解，启用OpenFeign功能，并指定调用的客户端的所属包名以便Spring可以扫描到客户端Bean
 ```
 @EnableFeignClients(basePackages = "com.hmall.api.client")
 ```
