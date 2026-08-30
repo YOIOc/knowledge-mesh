@@ -6,8 +6,28 @@
 	  ​服务调用者采用负载均衡算法，远程调用某一服务提供者
  ^621019
 - 服务监控：服务提供者每隔5s向Nacos发送心跳，如果Nacos服务在固定时间窗口内没有接收到心跳，就会将该服务从Nacos中剔除（非临时示例不会被剔除） ^f7fd73
-## 1.2实现注册中心
-**服务注册** - 提供服务
+## 1.2实战：注册中心+远程过程调用
+**创建公共的API模块**
+	该模块下编写各种用于提供服务的Feign客户端，服务调用者通过导入该模块的依赖，即可使用各种Feign客户端
+1. 公共模块引入OpenFeign、负载均衡依赖(服务调用者导入该模块后，也就同样引入了这两个依赖)
+```
+<!--Openfeign-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+
+<!--负载均衡-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+</dependency>
+```
+![](assets/Nacos/file-20260830172045332.png)
+2. 在公共api模块的client包下，编写需要用于提供外部服务的接口
+![](assets/Nacos/file-20260830172407314.png)
+
+**服务提供者模块**
 1. 引入Nacos依赖
 ```
 <dependency>
@@ -18,44 +38,42 @@
 2. 配置Nacos地址
 ```
 spring:
-  application:
-    name: service-provider #服务名称
   cloud:
     nacos:
-      server-addr: 8.156.77.246:8848 #nacos地址
+      server-addr: 8.156.77.246:8848
 ```
 
-**服务发现** - 调用服务
+**服务调用者模块**
+	引入Nacos、公共api模块，使用远程服务
 1. 引入Nacos依赖
 ```
+<!--nacos 服务注册发现-->
 <dependency>
     <groupId>com.alibaba.cloud</groupId>
     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+</dependency>
+
+<!--hm-api-->
+<dependency>
+    <groupId>com.heima</groupId>
+    <artifactId>hm-api</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
 2. 配置Nacos地址
 ```
 spring:
-  application:
-    name: service-discoverer #服务名称
   cloud:
     nacos:
-      server-addr: 8.156.77.246:8848 #nacos地址
+      server-addr: 8.156.77.246:8848
 ```
-3. 服务发现 
+3. 调用者模块启动项使用`@EnableFeignClient`注解，启用OpenFeign功能，并指定调用的客户端的所属包名以便Spring可以扫描到客户端Bean
 ```
-private final DiscoveryClient discoveryClient;
-
-private void handleCartItems(List<CartVO> vos){
-    // 1.根据服务名称，拉取服务的实例列表
-    List<ServiceInstance> instances = discoveryClient.getInstances("service-provider");
-    // 2.负载均衡，挑选一个实例
-    ServiceInstance instance = instances.get(RandomUtil.randomInt(instances.size()));
-    // 3.获取实例的IP和端口
-    URI uri = instance.getUri();
-    // ...略
-}
+@EnableFeignClients(basePackages = "com.hmall.api.client")
 ```
+![](assets/Nacos/file-20260830173006344.png)
+4. 注入需要使用的Feign客户端，在需要的位置调用客户端提供的方法
+![](assets/Nacos/file-20260830173050493.png)
 ## 2.1配置中心
 解决以下问题：
 - 微服务中的重复配置过多，维护成本高
